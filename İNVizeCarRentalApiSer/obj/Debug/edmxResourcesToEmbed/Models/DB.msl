@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities1">
+    <EntitySetMapping Name="Araba">
+      <EntityTypeMapping TypeName="DBModel.Araba">
+        <MappingFragment StoreEntitySet="Araba">
+          <ScalarProperty Name="ArabaId" ColumnName="ArabaId" />
+          <ScalarProperty Name="ArabaMarkasi" ColumnName="ArabaMarkasi" />
+          <ScalarProperty Name="ArabaUcreti" ColumnName="ArabaUcreti" />
+          <ScalarProperty Name="ArabaNo" ColumnName="ArabaNo" />
+          <ScalarProperty Name="ArabaDurum" ColumnName="ArabaDurum" />
+          <ScalarProperty Name="ArabaKatId" ColumnName="ArabaKatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="DBModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kiralama">
+      <EntityTypeMapping TypeName="DBModel.Kiralama">
+        <MappingFragment StoreEntitySet="Kiralama">
+          <ScalarProperty Name="KiralamaId" ColumnName="KiralamaId" />
+          <ScalarProperty Name="KiralamaArabaId" ColumnName="KiralamaArabaId" />
+          <ScalarProperty Name="KiralamaUserId" ColumnName="KiralamaUserId" />
+          <ScalarProperty Name="KiralamaTarih" ColumnName="KiralamaTarih" />
+          <ScalarProperty Name="TeslimTarih" ColumnName="TeslimTarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="DBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserAdiSoy" ColumnName="UserAdiSoy" />
+          <ScalarProperty Name="UserMail" ColumnName="UserMail" />
+          <ScalarProperty Name="UserTel" ColumnName="UserTel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

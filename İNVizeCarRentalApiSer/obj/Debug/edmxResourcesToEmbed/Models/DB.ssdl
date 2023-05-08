@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Araba">
+    <Key>
+      <PropertyRef Name="ArabaId" />
+    </Key>
+    <Property Name="ArabaId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArabaMarkasi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArabaUcreti" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArabaNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArabaDurum" Type="bit" Nullable="false" />
+    <Property Name="ArabaKatId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kiralama">
+    <Key>
+      <PropertyRef Name="KiralamaId" />
+    </Key>
+    <Property Name="KiralamaId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KiralamaArabaId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KiralamaUserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KiralamaTarih" Type="datetime" Nullable="false" />
+    <Property Name="TeslimTarih" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserAdiSoy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Araba_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Araba" Type="Self.Araba" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Araba">
+        <PropertyRef Name="ArabaKatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_ToAraba">
+    <End Role="Araba" Type="Self.Araba" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Araba">
+        <PropertyRef Name="ArabaId" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="KiralamaArabaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_ToUser">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="KiralamaUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="Araba" EntityType="Self.Araba" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kiralama" EntityType="Self.Kiralama" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Araba_ToKategori" Association="Self.FK_Araba_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Araba" EntitySet="Araba" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_ToAraba" Association="Self.FK_Kiralama_ToAraba">
+      <End Role="Araba" EntitySet="Araba" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_ToUser" Association="Self.FK_Kiralama_ToUser">
+      <End Role="User" EntitySet="User" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
